@@ -1,4 +1,4 @@
-# Vorprojekt Stefan Damböck
+# University Project
 
 This was a pre-project for a university group project.
 This assignment was supposed to verify the student's programming skills before moving on to the main group project.
