@@ -98,10 +98,8 @@ Starting the game will automatically provide the game setup:
 
 Each turn consists of two steps:
 
-- The active player draws a card and has now to cards. All non active players always have one card.
+- The active player draws a card and has now two cards. All non active players always have one card.
 - Choose one card to play, resolving its effect immediately. Discard the card face up. Effects target other players unless otherwise stated.
-
-Then the turn passes clockwise.
 
 A player is out of the round if they:
 
@@ -114,7 +112,7 @@ The round ends when:
 - The deck runs out of cards.
 
 The remaining players reveal their hands — the **highest card value** wins the round and earns _one token of affection_.
-The first player to earn a set number of affection tokens, depending on the number of players, wins.
+The first player to earn a set number of affection tokens, depending on the number of players, wins the game.
 
 ### Disclaimer
 
