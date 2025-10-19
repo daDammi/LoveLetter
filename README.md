@@ -1,93 +1,123 @@
 # Vorprojekt Stefan Damböck
 
+This was a pre-project for a university group project.
+This assignment was supposed to verify the student's programming skills before moving on to the main group project.
 
+Students were tasked with recreating the card game Love Letter without graphical elements and a rudimentary server-client environment.
 
-## Getting started
+The time frame was about two weeks.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## About the game
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+_Love Letter_ is a card game by Kanai Seiji and was first published in 2012. It can be played by up to four players. It is a deduction card game of risk, bluffing, and luck. Players compete to deliver their love letter to the Princess while deflecting the efforts of others.
 
-## Add your files
+In this project the game was recreated to be fully playable in a console, using text only.
+Every player uses a different console.
+Player actions are takeen via text commands.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Players start in a lobby. Any player can start a game once there are at least two players. Ending a game returns to the lobby, where another game can be started.
+
+## Set up project locally and create jar file
+
+- clone repository to local folder
+- run
 
 ```
-cd existing_repo
-git remote add origin https://gitlab2.cip.ifi.lmu.de/damboecks/vorprojekt-stefan-damboeck.git
-git branch -M main
-git push -uf origin main
+mvn clean package
 ```
 
-## Integrate with your tools
+to build the _target_ folder.
 
-- [ ] [Set up project integrations](https://gitlab2.cip.ifi.lmu.de/damboecks/vorprojekt-stefan-damboeck/-/settings/integrations)
+## Run the game
 
-## Collaborate with your team
+To run the game, first start the server and then add up to four clients (players).
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+- open a new terminal from the just created _target_ folder (or open the terminal from anywhere else and navigate to the _target_ folder)
+- run
 
-## Test and Deploy
+```
+java -jar vp-damboeck-1.0-SNAPSHOT.jar server
+```
 
-Use the built-in continuous integration in GitLab.
+to start the server
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- for every player, open a separate terminal and navigate to the _target_ folder
+- run
 
-***
+```
+java -jar vp-damboeck-1.0-SNAPSHOT.jar client
+```
 
-# Editing this README
+- Enter a name and a date to enter the lobby
+- In the lobby, players can chat, start a game or leave (close the client) by simply writing _bye_.
+- Type /start or /play to start a game, once there are at least two players connected.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Commands
 
-## Suggestions for a good README
+These are all commands the players can use:
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- /help: show all commands including their description.
+- /cards: show all cards with their respective values and effects.
+- /players: show the name of all players in the chat/game.
+- /start OR /play: start the game 'Love Letter'.
 
-## Name
-Choose a self-explaining name for your project.
+The following commands can only be used while the game is running:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+- /endGame: stop the game while playing.
+- /points: show the number of your points.
+- /hand OR /showHand: show the card(s) in your hand.
+- /allCards: show all cards, that have been played util now
+- /active: show the active player.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+# How to play
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Cards
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+The game consist of 8 different card and 16 cards in total. Each card has a value and an effect when played.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+These are the cards with their respective values:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- 8 - Princess: If you discard the Princess for any reason, you are knocked out of the round. Playing the Princess counts as discarding.
+- 7 - Countess: If you have either King or Prince in your hand additionally to the Countess, you have to play the Countess.
+- 6 - King: Exchange your card with the card of another target player.
+- 5 - Prince: Choose a player. That player has to discard his card and draw a new one.
+- 4 - Handmaid: Until your next turn you are protected. Other players cannot target you.
+- 3 - Baron: Compare your card with the card of another target player. The player with the lower value card is knocked out of the round.
+- 2 - Priest: Look at the card of another target player.
+- 1 - Guard: Guess the card of another target player. If you guessed right, that player is knocked out of the round.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Gameplay
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Starting the game will automatically provide the game setup:
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+- Shuffle the cards.
+- Remove the top card face down from the deck (hidden information). In a 2-player game, remove three cards face up instead.
+- Deal one card to each player.
+- The remaining cards form the deck.
+- Choose a starting player: the player with the last romantic encounter (hence the question when connecting).
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Each turn consists of two steps:
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+- The active player draws a card and has now to cards. All non active players always have one card.
+- Choose one card to play, resolving its effect immediately. Discard the card face up. Effects target other players unless otherwise stated.
 
-## License
-For open source projects, say how it is licensed.
+Then the turn passes clockwise.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+A player is out of the round if they:
+
+- Discard the _Princess_, or
+- Are eliminated by another player’s effect (e.g., Guard, Baron).
+
+The round ends when:
+
+- Only one player remains, **or**
+- The deck runs out of cards.
+
+The remaining players reveal their hands — the **highest card value** wins the round and earns _one token of affection_.
+The first player to earn a set number of affection tokens, depending on the number of players, wins.
+
+### Disclaimer
+
+This is an unofficial, non-commercial, text-based implementation inspired by the card game _Love Letter_ by Seiji Kanai.
+All names and thematic elements remain the property of their respective owners.
+This project was for educational purposes only and is not affiliated with or endorsed by Alderac Entertainment Group (AEG) or Z-Man Games.
